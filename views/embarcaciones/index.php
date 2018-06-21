@@ -9,7 +9,17 @@ use yii\grid\GridView;
 
 $this->title = 'Embarcaciones';
 $this->params['breadcrumbs'][] = $this->title;
+
+$mostrarTelefono = <<<EOT
+    $('.telefono').on('click', function() {
+        $(this).val($(this).data('tel'));
+    });
+EOT;
+
+$this->registerJs($mostrarTelefono);
+
 ?>
+
 <div class="embarcaciones-index">
 
     <h1><?= Html::encode($this->title) ?></h1>
@@ -31,9 +41,11 @@ $this->params['breadcrumbs'][] = $this->title;
             [
                 'attribute' => 'propietario.telefono',
                 'format' => 'raw',
-                'contentOptions' => ['class' => 'telefono'],
                 'value' => function($model, $x, $y) {
-                    return $model->propietario->telefono;
+                    return Html::buttonInput('Mostrar teléfono', [
+                        'class' => 'telefono btn btn-success',
+                        'data-tel' => $model->propietario->telefono,
+                    ]);
                 }
             ],
 
