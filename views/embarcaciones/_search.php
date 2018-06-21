@@ -6,6 +6,8 @@ use yii\widgets\ActiveForm;
 /* @var $this yii\web\View */
 /* @var $model app\models\EmbarcacionesSearch */
 /* @var $form yii\widgets\ActiveForm */
+
+$tiene = ['' => 'Es indiferente', true => 'Si', false => 'No'];
 ?>
 
 <div class="embarcaciones-search">
@@ -15,19 +17,19 @@ use yii\widgets\ActiveForm;
         'method' => 'get',
     ]); ?>
 
-    <?= $form->field($model, 'id') ?>
+    <?php // $form->field($model, 'id') ?>
 
-    <?= $form->field($model, 'propietario_id') ?>
+    <?php // $form->field($model, 'propietario_id') ?>
 
     <?= $form->field($model, 'plazas') ?>
 
     <?= $form->field($model, 'precio') ?>
 
-    <?= $form->field($model, 'motor')->checkbox() ?>
+    <?= $form->field($model, 'motor')->dropDownList($tiene) ?>
 
-    <?php // echo $form->field($model, 'vela')->checkbox() ?>
+    <?= $form->field($model, 'vela')->dropDownList($tiene) ?>
 
-    <?php // echo $form->field($model, 'remo')->checkbox() ?>
+    <?= $form->field($model, 'remo')->dropDownList($tiene) ?>
 
     <div class="form-group">
         <?= Html::submitButton('Search', ['class' => 'btn btn-primary']) ?>

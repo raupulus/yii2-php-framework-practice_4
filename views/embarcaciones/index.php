@@ -15,11 +15,6 @@ $this->params['breadcrumbs'][] = $this->title;
     <h1><?= Html::encode($this->title) ?></h1>
     <?= $this->render('_search', ['model' => $searchModel]); ?>
 
-    <p>
-        <?php // Html::a('Create Embarcaciones', ['create'], ['class' => 'btn
-        // btn-success']) ?>
-    </p>
-
     <?= GridView::widget([
         'dataProvider' => $dataProvider,
         //'filterModel' => $searchModel,
