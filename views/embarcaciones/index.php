@@ -13,27 +13,36 @@ $this->params['breadcrumbs'][] = $this->title;
 <div class="embarcaciones-index">
 
     <h1><?= Html::encode($this->title) ?></h1>
-    <?php // echo $this->render('_search', ['model' => $searchModel]); ?>
+    <?= $this->render('_search', ['model' => $searchModel]); ?>
 
     <p>
-        <?= Html::a('Create Embarcaciones', ['create'], ['class' => 'btn btn-success']) ?>
+        <?php // Html::a('Create Embarcaciones', ['create'], ['class' => 'btn
+        // btn-success']) ?>
     </p>
 
     <?= GridView::widget([
         'dataProvider' => $dataProvider,
-        'filterModel' => $searchModel,
+        //'filterModel' => $searchModel,
         'columns' => [
-            ['class' => 'yii\grid\SerialColumn'],
+            //['class' => 'yii\grid\SerialColumn'],
 
-            'id',
-            'propietario_id',
+            //'id',
+            'propietario.nombre',
             'plazas',
             'precio',
             'motor:boolean',
-            //'vela:boolean',
-            //'remo:boolean',
+            'vela:boolean',
+            'remo:boolean',
+            [
+                'attribute' => 'propietario.telefono',
+                'format' => 'raw',
+                'contentOptions' => ['class' => 'telefono'],
+                'value' => function($model, $x, $y) {
+                    return $model->propietario->telefono;
+                }
+            ],
 
-            ['class' => 'yii\grid\ActionColumn'],
+            //['class' => 'yii\grid\ActionColumn'],
         ],
     ]); ?>
 </div>
